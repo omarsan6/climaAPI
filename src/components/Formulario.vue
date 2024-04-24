@@ -10,6 +10,8 @@
 
     const error = ref('')
 
+    const emits = defineEmits(['obtener-clima'])
+
     const paises = [
         { codigo: 'US', nombre: 'Estados Unidos' },
         { codigo: 'MX', nombre: 'México' },
@@ -27,6 +29,8 @@
         }
 
         error.value = ''
+
+        emits('obtener-clima')
     }
 
 </script>
