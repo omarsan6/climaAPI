@@ -1,47 +1,35 @@
 <script setup>
-import HelloWorld from './components/HelloWorld.vue'
-import TheWelcome from './components/TheWelcome.vue'
+  import Formulario from './components/Formulario.vue'
+  import Clima from './components/Clima.vue'
+  import Spiner from './components/Spiner.vue'
+  import Alerta from './components/Alerta.vue'
+  import useClima from './composables/useClima.js'
+
+  const {obtenerClima, clima,mostrarClima,cargando,error} = useClima()
+
+
+
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="./assets/logo.svg" width="125" height="125" />
 
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-    </div>
-  </header>
+  <h1 class="titulo">Buscador de clima</h1>
 
-  <main>
-    <TheWelcome />
-  </main>
+  <div class="contenedor buscador-clima">
+    <Formulario
+      @obtener-clima="obtenerClima"/>
+
+    <Alerta v-if="error">{{ error }}</Alerta>
+    
+    <Spiner v-if="cargando"/>
+
+    <Clima 
+      v-if="mostrarClima" 
+      :clima="clima"/>
+  </div>
+
 </template>
 
 <style scoped>
-header {
-  line-height: 1.5;
-}
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
-  }
-
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-}
 </style>
