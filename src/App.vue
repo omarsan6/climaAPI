@@ -4,6 +4,8 @@
 
   const {obtenerClima} = useClima()
 
+
+
 </script>
 
 <template>
